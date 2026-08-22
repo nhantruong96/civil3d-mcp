@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationPackage
+  SchemaVersion="1.0"
+  AppVersion="1.0.0"
+  Author="civil3d-mcp"
+  ProductCode="{CCF31A0D-6074-4670-8929-6F0459BBDBEA}"
+  UpgradeCode="{19CB834E-6BEE-4E53-9B36-645F96675FCD}"
+  Name="Civil 3D MCP Server"
+  Description="Roslyn code-execution bridge for the Civil 3D MCP server (TCP/JSON-RPC on port 8080)."
+  PreferNewestAcross="AppData|ProgramFiles"
+  >
+  <CompanyDetails Name="civil3d-mcp" Url="https://github.com/civil3d-mcp/civil3d-mcp" />
+
+  <!-- Civil 3D 2027 = AutoCAD series R26.0. Bump SeriesMin/SeriesMax for other releases. -->
+  <RuntimeRequirements Platform="AutoCAD|Civil3D" SeriesMin="R26.0" SeriesMax="R26.0" OS="Win64" SupportPath="./Contents" />
+
+  <Components>
+    <ComponentEntry
+      AppName="Civil3dMcpPlugin"
+      Version="1.0.0"
+      ModuleName="./Contents/Civil3dMcpPlugin.dll"
+      LoadOnAutoCADStartup="true"
+      LoadOnCommandInvocation="false" />
+  </Components>
+
+  <DisplayInAppManager>false</DisplayInAppManager>
+</ApplicationPackage>

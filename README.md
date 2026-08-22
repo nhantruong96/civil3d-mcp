@@ -89,10 +89,19 @@ dotnet build
 ```
 
 ### 3. Load in Civil 3D
+
+**Per session** — `NETLOAD` → select `Civil3dMcpPlugin.dll`, then `C3DMCPSTATUS` to verify.
+
+**Autoload on every start** — deploy as an ApplicationPlugins bundle (no admin rights needed):
+```powershell
+.\scripts\deploy-bundle.ps1
 ```
-NETLOAD → select Civil3dMcpPlugin.dll
-C3DMCPSTATUS → verify running
-```
+This builds the plugin and copies it, together with `plugin/bundle/PackageContents.xml`, to
+`%APPDATA%\Autodesk\ApplicationPlugins\Civil3dMcp.bundle`. Restart Civil 3D and run `C3DMCPSTATUS`.
+
+Re-run the script after every plugin change (Civil 3D must be closed, otherwise the loaded DLL is
+locked). `PackageContents.xml` is pinned to `SeriesMin/SeriesMax="R26.0"` (Civil 3D 2027) — adjust it
+for other releases.
 
 ### 4. Configure AI
 ```json
