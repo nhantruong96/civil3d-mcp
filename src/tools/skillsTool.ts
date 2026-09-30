@@ -36,7 +36,8 @@ interface SkillFile {
  */
 function parseSkillFile(filePath: string): SkillFile | null {
   try {
-    const raw = fs.readFileSync(filePath, "utf-8");
+    // Normalize CRLF: git autocrlf checks skills out with \r\n on Windows.
+    const raw = fs.readFileSync(filePath, "utf-8").replace(/\r\n/g, "\n");
     const frontmatterMatch = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
 
     if (!frontmatterMatch) {
